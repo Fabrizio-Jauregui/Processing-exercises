@@ -22,22 +22,28 @@ class movil {
     if (pos.x<0 || pos.x >width) {
       pos.sub(vel);
       vel.x = vel.x*-1;
-     
     }
     if (pos.y<0 || pos.y >height) {
       vel.y = vel.y*-1;
     }
   }
 }
-movil m;
 
-void setup(){
-  size(500, 500);
-  frameRate(120);
-  m = new movil(width/2, height/2);
+movil[] moviles;
+int cant = 10;
+
+void setup() {
+  size(800, 600);
+  frameRate(60);
+  moviles = new movil[cant];
+  for (int i = 0; i<cant; i++) {
+    moviles[i] = new movil(random(width), random(height));
+  }
 }
-void draw(){
-  m.mover();
-  m.mostrar();
-  
+
+void draw() {
+  for (int i = 0; i<cant; i++) {
+    moviles[i].mover();
+    moviles[i].mostrar();
+  }
 }
